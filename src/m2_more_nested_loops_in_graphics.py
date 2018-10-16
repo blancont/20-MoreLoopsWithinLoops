@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Nathaniel Blanco.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -49,9 +49,29 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # ------------------------------------------------------------------
+    for k in range(n):
+        for j in range(k + 1):
+            p1 = rectangle.corner_1
+            p2 = rectangle.corner_2
+            new_brick = rg.Rectangle(p1, p2)
+            new_brick.corner_1 = rg.Point(p1.x - k * (rectangle.get_width() / 2),
+                                          p1.y - k * rectangle.get_height())
+            new_brick.corner_2 = rg.Point(p2.x - k * (rectangle.get_width() / 2),
+                                          p2.y - k * rectangle.get_height())
+            new_brick.attach_to(window)
+            for i in range(k):
+                p1 = new_brick.corner_1
+                p2 = new_brick.corner_2
+                additional_brick = rg.Rectangle(p1, p2)
+                additional_brick.corner_1 = rg.Point(p1.x + (i + 1) * rectangle.get_width(),
+                                                     p1.y)
+                additional_brick.corner_2 = rg.Point(p2.x + (i + 1) * rectangle.get_width(),
+                                                     p2.y)
+                additional_brick.attach_to(window)
+    window.render()
 
 
 # ----------------------------------------------------------------------
