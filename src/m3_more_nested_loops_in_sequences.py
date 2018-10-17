@@ -75,7 +75,7 @@ def largest_number(seq_seq):
     where each subsequence contains only numbers.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     number = None
@@ -90,7 +90,7 @@ def largest_number(seq_seq):
 def run_test_largest_negative_number():
     """ Tests the    largest_negative_number    function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # DONE: 4. Implement this TEST function.
     #   It TESTS the  largest_negative_number  function defined below.
     #
     #   Include enough tests to give you confidence that your solution
@@ -100,6 +100,22 @@ def run_test_largest_negative_number():
     print('-------------------------------------------------')
     print('Testing the   LARGEST_NEGATIVE_NUMBER   function:')
     print('-------------------------------------------------')
+
+    answer = largest_negative_number([])
+    expect = None
+    print('Expect and Actual:', expect, answer)
+
+    answer = largest_negative_number(([5, 2, -4], []))
+    expect = -4
+    print('Expect and Actual:', expect, answer)
+
+    answer = largest_negative_number(([1, 2, 3], [4, 5, 6]))
+    expect = None
+    print('Expect and Actual:', expect, answer)
+
+    answer = largest_negative_number(([-5, -5, -5],))
+    expect = -5
+    print('Expect and Actual:', expect, answer)
 
 
 def largest_negative_number(seq_seq):
@@ -125,13 +141,22 @@ def largest_negative_number(seq_seq):
     where each subsequence contains only numbers.
     """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # CHALLENGE: Try to solve this problem with no additional sequences
     #   being constructed (so the SPACE allowed is limited to the
     #   give sequence of sequences plus any non-list variables you want).
     # ------------------------------------------------------------------
+    number = None
+    for k in range(len(seq_seq)):
+        for j in range(len(seq_seq[k])):
+            if seq_seq[k][j] < 0:
+                if number is None:
+                    number = seq_seq[k][j]
+                if seq_seq[k][j] > number:
+                    number = seq_seq[k][j]
+    return number
 
 
 def run_test_first_is_elsewhere_too():
